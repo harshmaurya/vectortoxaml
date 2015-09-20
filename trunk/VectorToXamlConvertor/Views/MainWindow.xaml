@@ -1,0 +1,88 @@
+﻿<Window x:Class="VectorToXamlConvertor.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Vector To Xaml Convertor"
+        Width="800"
+        Height="600"
+        WindowStartupLocation="CenterScreen"
+        xmlns:viewModel="clr-namespace:VectorToXamlConvertor.ViewModel"
+        xmlns:views="clr-namespace:VectorToXamlConvertor.Views"
+        Background="{DynamicResource WindowBrush}"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions">
+    <Window.Resources>
+        <viewModel:MainWindowViewModel x:Key="vm"></viewModel:MainWindowViewModel>
+        <Storyboard x:Key="ShowOutputScreen">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="inputView">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-500"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="inputView">
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}"/>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.6" Value="{x:Static Visibility.Collapsed}"/>
+        	</ObjectAnimationUsingKeyFrames>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="postConversionScreen">
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.6" Value="{x:Static Visibility.Visible}"/>
+        	</ObjectAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="postConversionScreen">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="600"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ShowHomeScreen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="postConversionScreen">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-500"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="postConversionScreen">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.6" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="inputView">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.6" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="inputView">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="600"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource vm}">
+        <views:InputView x:Name="inputView" RenderTransformOrigin="0.5,0.5">
+            <views:InputView.LayoutTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </views:InputView.LayoutTransform>
+            <views:InputView.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </views:InputView.RenderTransform>
+        </views:InputView>
+        <views:PostConversionScreen x:Name="postConversionScreen" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+            <views:PostConversionScreen.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </views:PostConversionScreen.RenderTransform>
+        </views:PostConversionScreen>
+        <i:Interaction.Triggers>
+            <ei:DataTrigger Binding="{Binding PostConversionViewVisible}" Value="True">
+                <ei:ControlStoryboardAction 
+             Storyboard="{StaticResource ShowOutputScreen}" ControlStoryboardOption="Play" />
+            </ei:DataTrigger>
+            <ei:DataTrigger Binding="{Binding PostConversionViewVisible}" Value="False">
+                <ei:ControlStoryboardAction 
+             Storyboard="{StaticResource ShowHomeScreen}" ControlStoryboardOption="Play" />
+            </ei:DataTrigger>
+        </i:Interaction.Triggers>
+    </Grid>
+</Window>
