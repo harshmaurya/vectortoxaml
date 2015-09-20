@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="VectorToXamlConvertor.Views.PostConversionScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:VectorToXamlConvertor.ViewModel"
+             xmlns:widgets="clr-namespace:Common.Widgets;assembly=Common.Widgets"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
+        <viewModel:PostConversionScreenViewModel x:Key="ViewModel"/>
+        <system:String x:Key="Save">M 26 0 H 24 V 13 H 8 V 0 H 0 V 32 H 32 V 6 L 26 0 z m 2 30 H 4 V 16 h 24 v 14 z</system:String>
+        <system:String x:Key="Home">M 540.76 254.788 294.506 38.216 c -11.475 -10.098 -30.064 -10.098 -41.386 0 L 6.943 254.788 c -11.475 10.098 -8.415 18.284 6.885 18.284 h 75.964 v 221.773 c 0 12.087 9.945 22.108 22.108 22.108 h 92.947 V 371.067 c 0 -12.087 9.945 -22.108 22.109 -22.108 h 93.865 c 12.239 0 22.108 9.792 22.108 22.108 v 145.886 h 92.947 c 12.24 0 22.108 -9.945 22.108 -22.108 v -221.85 h 75.965 c 15.072 0 18.132 -8.109 6.811 -18.207 z</system:String>
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource ViewModel}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" x:Name="ActionBar" Margin="10">
+            <widgets:IconButton Command="{Binding GotoHomeCommand}" IconKey="{StaticResource Home}" IconHeight="40" IconWidth="40" Content="Home" Margin="0,0,40,0"/>
+            <widgets:IconButton Command="{Binding SaveCommmand}" IconKey="{StaticResource Save}" IconHeight="40" IconWidth="40" Content="Save All" Margin="0,0,40,0"/>
+        </StackPanel>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Xaml" Visibility="{Binding ConversionSettings.XamlOutputEnabled,Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBox ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" MinHeight="400" Text="{Binding SelectedVector. PathGeometryXaml}"></TextBox>
+            </TabItem>
+            <TabItem Header="Path Data" Visibility="{Binding ConversionSettings.PathOutputEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBox ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" MinHeight="400" Text="{Binding SelectedVector.PathData}"></TextBox>
+            </TabItem>
+        </TabControl>
+        <ListView Grid.Row="2" ItemsSource="{Binding ConvertedObjects}" SelectedItem="{Binding SelectedVector, Mode=TwoWay}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Border BorderBrush="{DynamicResource SecondaryForeground}" BorderThickness="2" Padding="5,5,5,5">
+                            <Viewbox MaxWidth="60">
+                                <ContentControl x:Name="vectorContainer" Content="{Binding XamlObject}"></ContentControl>
+                            </Viewbox>
+                        </Border>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

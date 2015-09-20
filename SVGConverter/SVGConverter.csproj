@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A8305858-1D94-4034-B8AB-E561DE4C70B7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SVGConverter</RootNamespace>
+    <AssemblyName>SVGConverter</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Convertor\AttributeFactory.cs" />
+    <Compile Include="Convertor\Attributes\GenericAttributes.cs" />
+    <Compile Include="Convertor\Attributes\GradientAttributes.cs" />
+    <Compile Include="Convertor\Attributes\ISvgAttribute.cs" />
+    <Compile Include="Convertor\Attributes\ITransformationAttribute.cs" />
+    <Compile Include="Convertor\Attributes\LineAttributes.cs" />
+    <Compile Include="Convertor\Attributes\PathAttributes.cs" />
+    <Compile Include="Convertor\Attributes\PolyLineAtrribute.cs" />
+    <Compile Include="Convertor\Attributes\ShapeAttributes.cs" />
+    <Compile Include="Convertor\Attributes\SvgAttributeBase.cs" />
+    <Compile Include="Convertor\Attributes\TextAttributes.cs" />
+    <Compile Include="Convertor\ElementFactory.cs" />
+    <Compile Include="Convertor\Elements\EllipseElement.cs" />
+    <Compile Include="Convertor\Elements\GElement.cs" />
+    <Compile Include="Convertor\Elements\GradientElements.cs" />
+    <Compile Include="Convertor\Elements\GroupAdaptor.cs" />
+    <Compile Include="Convertor\Elements\IdAttribute.cs" />
+    <Compile Include="Convertor\Elements\ISvgElement.cs" />
+    <Compile Include="Convertor\Elements\LineElement.cs" />
+    <Compile Include="Convertor\Elements\PathElement.cs" />
+    <Compile Include="Convertor\Elements\PolyLineElement.cs" />
+    <Compile Include="Convertor\Elements\RectElement.cs" />
+    <Compile Include="Convertor\Elements\SvgDefinitions.cs" />
+    <Compile Include="Convertor\Elements\SvgElementBase.cs" />
+    <Compile Include="Convertor\Elements\SvgGenericShapeAdaptor.cs" />
+    <Compile Include="Convertor\Elements\SvgGeometryElement.cs" />
+    <Compile Include="Convertor\Elements\SvgLineAdaptor.cs" />
+    <Compile Include="Convertor\Elements\SvgPolyLineAdaptor.cs" />
+    <Compile Include="Convertor\Elements\TextElement.cs" />
+    <Compile Include="Convertor\Transforms.cs" />
+    <Compile Include="Convertor\ITransformable.cs" />
+    <Compile Include="Convertor\SvgConvertor.cs" />
+    <Compile Include="Convertor\SVGDocument.cs" />
+    <Compile Include="Convertor\SvgElementHost.cs" />
+    <Compile Include="Convertor\TransformationHelper.cs" />
+    <Compile Include="Convertor\VectorContainer.cs" />
+    <Compile Include="Convertor\VectorXaml.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
