@@ -36,10 +36,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Themes">
-      <HintPath>..\..\CommonComponents\Common.Themes\bin\Release\Common.Themes.dll</HintPath>
+      <HintPath>lib\Common.Themes.dll</HintPath>
     </Reference>
     <Reference Include="Common.Widgets">
-      <HintPath>..\..\CommonComponents\Common.Widgets\bin\Release\Common.Widgets.dll</HintPath>
+      <HintPath>lib\Common.Widgets.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
