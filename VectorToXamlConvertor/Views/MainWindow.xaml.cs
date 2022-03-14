@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows;
 using VectorToXamlConvertor.ViewModel;
 
 namespace VectorToXamlConvertor.Views

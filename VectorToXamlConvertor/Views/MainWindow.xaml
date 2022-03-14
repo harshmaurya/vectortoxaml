@@ -8,8 +8,7 @@
         xmlns:viewModel="clr-namespace:VectorToXamlConvertor.ViewModel"
         xmlns:views="clr-namespace:VectorToXamlConvertor.Views"
         Background="{DynamicResource WindowBrush}"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
-        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions">
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors">
     <Window.Resources>
         <viewModel:MainWindowViewModel x:Key="vm"></viewModel:MainWindowViewModel>
         <Storyboard x:Key="ShowOutputScreen">
@@ -74,15 +73,15 @@
                 </TransformGroup>
             </views:PostConversionScreen.RenderTransform>
         </views:PostConversionScreen>
-        <i:Interaction.Triggers>
-            <ei:DataTrigger Binding="{Binding PostConversionViewVisible}" Value="True">
-                <ei:ControlStoryboardAction 
+        <b:Interaction.Triggers>
+            <b:DataTrigger Binding="{Binding PostConversionViewVisible}" Value="True">
+                <b:ControlStoryboardAction 
              Storyboard="{StaticResource ShowOutputScreen}" ControlStoryboardOption="Play" />
-            </ei:DataTrigger>
-            <ei:DataTrigger Binding="{Binding PostConversionViewVisible}" Value="False">
-                <ei:ControlStoryboardAction 
+            </b:DataTrigger>
+            <b:DataTrigger Binding="{Binding PostConversionViewVisible}" Value="False">
+                <b:ControlStoryboardAction 
              Storyboard="{StaticResource ShowHomeScreen}" ControlStoryboardOption="Play" />
-            </ei:DataTrigger>
-        </i:Interaction.Triggers>
+            </b:DataTrigger>
+        </b:Interaction.Triggers>
     </Grid>
 </Window>
